@@ -11,7 +11,7 @@ def main(argv):
     input_evidencefolder =""
     input_casename =""
     try:
-      opts, args = getopt.getopt(argv,"ha:s:bN:eF:cN:",["accesskey=","secret=","bucketname=","evidencefolder=","casename="])
+      opts, args = getopt.getopt(argv,"ha:s:b:e:c:",["accesskey=","secret=","bucketname=","evidencefolder=","casename="])
     except getopt.GetoptError:
       print("Try extractartefacts.py -h")
       sys.exit(2)
@@ -22,11 +22,11 @@ def main(argv):
             input_accesskey = arg
         elif opt in ("-s", "--secretkey"):
             input_secret=arg
-        elif opt in ("-bN", "--bucketname"):
+        elif opt in ("-b", "--bucketname"):
             input_bucketname = arg
-        elif opt in ("-eF", "--evidencefolder"):
+        elif opt in ("-e", "--evidencefolder"):
             input_evidencefolder = arg
-        elif opt in ("-cN", "--casename"):
+        elif opt in ("-c", "--casename"):
             input_evidencefolder = arg
     aws_extractevidencefiles(input_accesskey,input_secret,input_bucketname,input_evidencefolder, input_casename)
 
@@ -40,7 +40,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
     try:
         os.system("cd ~")
         os.system("echo " + accesskey + ':' + secret + ' > ' + "~/.passwd-s3fs")
-        os.system("chmod 600 .passwd-s3fs")
+        os.system("chmod 600 ~/.passwd-s3fs")
         os.system("mkdir s3drive")
         os.system("s3fs " + bucketname + " ~/s3-drive")
     except :
