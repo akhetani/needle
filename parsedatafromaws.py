@@ -41,7 +41,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
         os.system("cd ~")
         os.system("echo " + accesskey + ':' + secret + ' > ' + "~/.passwd-s3fs")
         os.system("chmod 600 ~/.passwd-s3fs")
-        os.system("mkdir ~/s3drive")
+        os.system("mkdir ~/s3-drive")
         os.system("s3fs " + bucketname + " ~/s3-drive")
     except :
         print("That did not go as planned. S3bucket is not mounted.")
