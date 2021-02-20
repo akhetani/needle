@@ -31,9 +31,14 @@ def main(argv):
     aws_extractevidencefiles(input_accesskey,input_secret,input_bucketname,input_evidencefolder, input_casename)
 
 def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, casename):
+    print("Access Key : " + accesskey)
+    print("Secret : " + secret)
+    print("Bucket Name : " + bucketname)
+    print("evidencefolder : " + evidencefolder)
+    print("casename :" + casename)
     
     try:
-        os.system("echo " + accesskey+ ' : '+ secret + '>' + "~/.passwd-s3fs")
+        os.system("echo " + accesskey + ' : ' + secret + ' >' + " ~/.passwd-s3fs")
         os.system("cd ~")
         os.system("chmod 600 .passwd-s3fs")
         os.system("mkdir s3drive")
