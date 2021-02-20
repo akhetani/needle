@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import os
-from os import walk
+from os import name, walk
 import sys, getopt
 
 
@@ -56,7 +56,8 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
     try:
         for (dirpath, dirnames, filenames) in walk(fullpathtoevidence):
             for file in filenames:
-                if file.endswith(".vmdk") or file.endswith(".E01"):
+                print(file.name())
+                if file.endswith('.vmdk','.E01'):
                     temp_output_directory = casename + "/output/" + file
                     os.system("mkdir " + temp_output_directory)
                     print("Extracting files from" + file)
