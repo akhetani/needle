@@ -36,10 +36,10 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
     print("Bucket Name : " + bucketname)
     print("evidencefolder : " + evidencefolder)
     print("casename :" + casename)
-    
+
     try:
-        os.system("echo " + accesskey + ' : ' + secret + ' >' + " ~/.passwd-s3fs")
         os.system("cd ~")
+        os.system("echo " + accesskey + ':' + secret + ' > ' + "~/.passwd-s3fs")
         os.system("chmod 600 .passwd-s3fs")
         os.system("mkdir s3drive")
         os.system("s3fs " + bucketname + " ~/s3-drive")
