@@ -53,23 +53,22 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
     if evidencefolder !="" :
         fullpathtoevidence= fullpathtoevidence + "/" + evidencefolder
         print(fullpathtoevidence)
-    try:
-        for (dirpath, dirnames, filenames) in walk(fullpathtoevidence):
-            print(filenames)
-            for file in filenames:
-                print(file)
-                if file.endswith('.vmdk','.E01'):
-                    temp_output_directory = casename + "/output/" + file
-                    os.system("mkdir " + temp_output_directory)
-                    print("Extracting files from" + file)
-                    os.system("cd "+ dirpath)
-                    os.system("7z " + "x " + file + "-o/" + temp_output_directory + " \"[SYSTEM]/*\" \
-                                \"Windows/System32/winevt/*\" \
-                                \"Users/*\" \
-                                \"Windows/System32/config\" \
-                                \"*/History/*\" \
-                                \"*/prefetch/*\" \
-                                \"*.etl\"")
+    for (dirpath, dirnames, filenames) in os.walk(fullpathtoevidence):
+        print(filenames)
+        for file in filenames:
+            print(file)
+            if file.endswith('.vmdk','.E01'):
+                temp_output_directory = casename + "/output/" + file
+                os.system("mkdir " + temp_output_directory)
+                print("Extracting files from" + file)
+                os.system("cd "+ dirpath)
+                os.system("7z " + "x " + file + "-o/" + temp_output_directory + " \"[SYSTEM]/*\" \
+                            \"Windows/System32/winevt/*\" \
+                            \"Users/*\" \
+                            \"Windows/System32/config\" \
+                            \"*/History/*\" \
+                            \"*/prefetch/*\" \
+                            \"*.etl\"")
     except:
         print("Problem while extracting the files")
 
