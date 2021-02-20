@@ -2,6 +2,7 @@
 import os
 from os import name, walk
 import sys, getopt
+from pathlib import Path
 
 
 def main(argv):
@@ -37,19 +38,22 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
     print("evidencefolder : " + evidencefolder)
     print("casename :" + casename)
 
+    working_directory="/home/ubuntu/" + casename
+    os.system("mkdir " + working_directory)
+    output_directory= working_directory + "/output"
+    os.system("mkdir " + output_directory)
+    s3_mountpoint = working_directory + "/s3-drive"
     try:
-        os.system("cd ~")
         os.system("echo " + accesskey + ':' + secret + ' > ' + "~/.passwd-s3fs")
         os.system("chmod 600 ~/.passwd-s3fs")
-        os.system("mkdir ~/s3-drive")
-        os.system("s3fs " + bucketname + " ~/s3-drive")
+        os.system("mkdir " + s3_mountpoint)
+        os.system("s3fs " + bucketname + " " + s3_mountpoint)
     except :
         print("That did not go as planned. S3bucket is not mounted.")
         sys.exit()
-    os.system("mkdir " + casename)
-    fullpathtoevidence = "/home/ubuntu/s3-drive/"
+    
+    fullpathtoevidence = s3_mountpoint
     os.system("sudo apt install p7zip-full p7zip-rar")
-    os.system("cd ")
     if evidencefolder !="" :
         fullpathtoevidence= fullpathtoevidence + evidencefolder +'/' 
         print(fullpathtoevidence)
@@ -58,7 +62,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
         for file in filenames:
             print(file)
             if file.endswith(('.vmdk','.E01')):
-                temp_output_directory = casename + "/output/" + file
+                temp_output_directory = output_directory + "/" + Path(file).stem
                 os.system("mkdir " + temp_output_directory)
                 print("Extracting files from " + file)
                 print("temp output dircetory :" + temp_output_directory)
