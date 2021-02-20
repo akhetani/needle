@@ -27,7 +27,7 @@ def main(argv):
         elif opt in ("-e", "--evidencefolder"):
             input_evidencefolder = arg
         elif opt in ("-c", "--casename"):
-            input_evidencefolder = arg
+            input_casename = arg
     aws_extractevidencefiles(input_accesskey,input_secret,input_bucketname,input_evidencefolder, input_casename)
 
 def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, casename):
