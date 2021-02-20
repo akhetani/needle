@@ -52,6 +52,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
     os.system("cd ~/s3-drive")
     if evidencefolder !="" :
         fullpathtoevidence= fullpathtoevidence + "/" + evidencefolder
+        print(fullpathtoevidence)
     try:
         for (dirpath, dirnames, filenames) in walk(fullpathtoevidence):
             for file in filenames:
