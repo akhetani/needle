@@ -69,9 +69,6 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
                             \"*/History/*\" \
                             \"*/prefetch/*\" \
                             \"*.etl\"")
-    except:
-        print("Problem while extracting the files")
-
 if __name__ == "__main__":
     main(sys.argv[1:])
     
