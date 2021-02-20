@@ -57,7 +57,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
         print(filenames)
         for file in filenames:
             print(file)
-            if file.endswith('.vmdk','.E01'):
+            if file.endswith(('.vmdk','.E01')):
                 temp_output_directory = casename + "/output/" + file
                 os.system("mkdir " + temp_output_directory)
                 print("Extracting files from" + file)
