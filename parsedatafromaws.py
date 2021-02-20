@@ -47,7 +47,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
         print("That did not go as planned. S3bucket is not mounted.")
         sys.exit()
     os.system("mkdir " + casename)
-    fullpathtoevidence = "~/s3-drive/"
+    fullpathtoevidence = "~/s3-drive"
     os.system("sudo apt install p7zip-full p7zip-rar")
     os.system("cd ~/s3-drive")
     if evidencefolder !="" :
