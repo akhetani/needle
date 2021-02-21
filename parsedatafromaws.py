@@ -2,8 +2,6 @@
 import os
 from os import name, walk
 import sys, getopt
-from pathlib import Path
-
 
 def main(argv):
     input_accesskey =""
