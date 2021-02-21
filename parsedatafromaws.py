@@ -51,7 +51,6 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
         sys.exit()
     
     fullpathtoevidence = s3_mountpoint
-    os.system("sudo apt install p7zip-full p7zip-rar")
     if evidencefolder !="" :
         fullpathtoevidence= fullpathtoevidence + evidencefolder +'/' 
         print(fullpathtoevidence)
@@ -74,6 +73,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
                             \"*.etl\"")
                 os.system("7z a '" + temp_output_directory + ".zip'" + " '" + temp_output_directory+"/'" )
                 os.system("cp '" +  temp_output_directory + "'.zip " + "'" + s3_mountpoint + "'")
+    os.system("umount " + s3_mountpoint)
 if __name__ == "__main__":
     main(sys.argv[1:])
     
