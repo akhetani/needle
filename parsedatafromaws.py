@@ -40,7 +40,7 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
     os.system("mkdir " + working_directory)
     output_directory= working_directory + "/output"
     os.system("mkdir " + output_directory)
-    s3_mountpoint = working_directory + "/s3-drive"
+    s3_mountpoint = working_directory + "/s3-drive/"
     try:
         os.system("echo " + accesskey + ':' + secret + ' > ' + "~/.passwd-s3fs")
         os.system("chmod 600 ~/.passwd-s3fs")
