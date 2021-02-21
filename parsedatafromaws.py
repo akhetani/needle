@@ -65,9 +65,13 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
                 print("Extracting files from :" + file)
                 evidence_file = fullpathtoevidence + file
                 print("temp output dircetory :" + temp_output_directory)
-                os.system("cd "+ dirpath)
-                os.system("7z " + "l " + "\"" + evidence_file + "\"")
-                os.system("7z " + "x " + "'" + evidence_file + "'" + " -o/" + "'" + temp_output_directory + "' " + "[SYSTEM]/*" )
+                os.system("7z " + "x " + "'" + evidence_file + "'" + " -o/" + "'" + temp_output_directory + "' " + "[SYSTEM]/* \
+                            \"Windows/System32/winevt/*\" \
+                            \"Users/*\" \
+                            \"Windows/System32/config\" \
+                            \"*/History/*\" \
+                            \"*/prefetch/*\" \
+                            \"*.etl\"")
 if __name__ == "__main__":
     main(sys.argv[1:])
     
