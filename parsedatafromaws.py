@@ -65,7 +65,8 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
                 print("Extracting files from " + file)
                 print("temp output dircetory :" + temp_output_directory)
                 os.system("cd "+ dirpath)
-                os.system("7z " + "x " + "'" + file + "'" + " -o/" + "'" + temp_output_directory + "' " + "[SYSTEM]/*" )
+                os.system("7z " + "x " + "'" + file + "'")
+                #os.system("7z " + "x " + "'" + file + "'" + " -o/" + "'" + temp_output_directory + "' " + "[SYSTEM]/*" )
 if __name__ == "__main__":
     main(sys.argv[1:])
     
