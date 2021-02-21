@@ -72,6 +72,8 @@ def aws_extractevidencefiles(accesskey, secret, bucketname, evidencefolder, case
                             \"*/History/*\" \
                             \"*/prefetch/*\" \
                             \"*.etl\"")
+                os.system("7z a" + temp_output_directory + ".zip" + "'" + temp_output_directory+"/'" )
+                os.system("cp " +  temp_output_directory + ".zip " + s3_mountpoint)
 if __name__ == "__main__":
     main(sys.argv[1:])
     
